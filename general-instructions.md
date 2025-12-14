@@ -179,3 +179,6 @@ Then: ``` git remote add origin git@github.com:username/repository_name.git ``` 
 
 Pulling from origin
 ``` git pull origin main ```
+
+Errors with pulling (some changes locally which we do not want)
+``` git reset --hard HEAD ```
