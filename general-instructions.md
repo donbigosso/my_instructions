@@ -133,3 +133,16 @@ To ignore files from committing add them (create if not present) to ``` .gitigno
 *.html
 test_file.md
  ```
+ Adding files for committing ``` git add . ``` <br>
+ 
+ Committing files: 
+ ``` git commit -m "Commit message here" ```
+
+Checking if there is a remote origin ``` git remote -v ``` . It will return nothing if origin is not set up.
+### Setting up git origin ###
+1. Create new repository on GitHub (no .gitignore, no README). After creating it instructions will be shown in GitHub.
+2. Run the below commands in the terminal.
+<br>If the branch is not called main (old repos): ``` git branch -M main ```
+Then: ``` git remote add origin git@github.com:username/repository_name.git ```
+
+
