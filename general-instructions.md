@@ -56,7 +56,7 @@ docker volume ls
 
 docker volume inspect db_data
 ```
- To clear it (needed for example if database has been changed) use:
+ To clear it (needed for example if database has been changed or when database needs to be completely removed) use:
 ```
 docker compose down -v
 ```
@@ -122,6 +122,33 @@ or
 docker compose exec mysql mysql -u root -p #when using root password
 ```
 
+### Moving credentials to .env file ###
+.env file should never be committed to git <br>
+Environmental variables look like this (.env file content):
+
+```
+MYSQL_ROOT_PASSWORD=secret123
+MYSQL_DATABASE=appdb
+APP_SECRET=tu_jest_jakis_sekret
+```
+Later they must be passed to each service in ``` docker-compose.yml ``` file:
+```
+php:
+    build: .
+    container_name: php-server
+    environment:
+      APP_SECRET: ${APP_SECRET}
+```
+## MySQL ##
+### Dumping database ###
+Database can be duped easily to ``` dump.sql ``` file as long as root password is added to environmental variables:
+
+```
+docker compose exec mysql sh -c \
+'mysqldump --no-tablespaces -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"' \
+> dump.sql
+```
+
 
 ## Git ##
 Checking if git is installed
@@ -168,6 +195,14 @@ Checking if there is a remote origin ``` git remote -v ``` . It will return noth
 Then: ``` git remote add origin git@github.com:username/repository_name.git ``` You can find it in code tab under SSH on GitHub.
 <br> Finally, push the content: ``` git push -u origin main ```
 
+If we want to push an empty folder and ignore content (for example ``` uploads ``` folder) we need to place ``` .gitkeep ``` file and add below lines to ``` .gitignore ``` (folder can be different) :
+
+```
+api_source/uploads/*
+!api_source/uploads/.gitkeep
+```
+Because completely empty folder will not be pushed.
+
 ### Errors with first push  ###
 ```
 Username for 'https://github.com': your_username
@@ -175,6 +210,11 @@ Password for 'https://donbigosso@github.com': your_password
 remote: Invalid username or token. Password authentication is not supported for Git operations.
 fatal: Authentication failed for 'https://github.com/donbigosso/my_instructions/'
 ```
+
+The simplest way to combat this is to generate a personal access token from github:
+1. Go to Settings > Developer settings > Personal access tokens > Tokens (classic) (or Fine-grained tokens for more control).
+2. Click Generate new token (or Generate new token (classic)).
+3. Use it instead of password.
 
 
 ### Cloning an existing repository ###

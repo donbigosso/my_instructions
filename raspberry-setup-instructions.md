@@ -24,4 +24,15 @@ lp -d HP-LaserJet-Professional-P1102 -P 1-2 dokument.pdf
 ```
 -P indicates the page range, -n - numer of copies
 
+## Docker ##
+Setting up an Ubuntu container to experiment. It will be removed after exiting.
+
+```
+docker run -it --rm ubuntu bash
+```
+
+``` -it ``` : Connects you interactively to the container's terminal.
+``` --rm ``` : Automatically removes the container when you exit, keeping your system clean.
+``` ubuntu ``` : Uses the latest official Ubuntu image.
+
 
