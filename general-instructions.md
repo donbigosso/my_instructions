@@ -21,7 +21,7 @@ services:
     build: .
     container_name: php-server
     ports:
-      - "8082:80"
+      - "8082:80"  # Maps port 8082 on your computer to port 80 in the container. 8082 can be replaced by any other port.
     volumes:
       - ./src:/var/www/html
     depends_on:
@@ -143,6 +143,9 @@ Checking if there is a remote origin ``` git remote -v ``` . It will return noth
 1. Create new repository on GitHub (no .gitignore, no README). After creating it instructions will be shown in GitHub.
 2. Run the below commands in the terminal.
 <br>If the branch is not called main (old repos): ``` git branch -M main ```
-Then: ``` git remote add origin git@github.com:username/repository_name.git ```
+Then: ``` git remote add origin git@github.com:username/repository_name.git ``` You can find it in code tab under SSH on GitHub.
+<br> Finally, push the content: ``` git push -u origin main ```
 
+### Cloning an existing repository ###
+``` git clone https://github.com/username/repo_name ```
 
