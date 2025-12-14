@@ -138,6 +138,28 @@ test_file.md
  Committing files: 
  ``` git commit -m "Commit message here" ```
 
+Possible error:
+
+
+```
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'bigos@raspberrypi.(none)')
+```
+
+### Remote origin ###
+
+
 Checking if there is a remote origin ``` git remote -v ``` . It will return nothing if origin is not set up.
 ### Setting up git origin ###
 1. Create new repository on GitHub (no .gitignore, no README). After creating it instructions will be shown in GitHub.
@@ -149,3 +171,11 @@ Then: ``` git remote add origin git@github.com:username/repository_name.git ``` 
 ### Cloning an existing repository ###
 ``` git clone https://github.com/username/repo_name ```
 
+### Fetch vs pull ###
+
+``` git fetch ``` → Downloads new changes from the remote repository to your local .git folder, but doesn't change your working files.
+
+``` git pull ``` = ``` git fetch ``` +  ``` git merge ``` → Downloads and immediately merges the changes into your current branch.
+
+Pulling from origin
+``` git pull origin main ```
