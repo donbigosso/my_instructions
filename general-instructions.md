@@ -168,6 +168,15 @@ Checking if there is a remote origin ``` git remote -v ``` . It will return noth
 Then: ``` git remote add origin git@github.com:username/repository_name.git ``` You can find it in code tab under SSH on GitHub.
 <br> Finally, push the content: ``` git push -u origin main ```
 
+### Errors with first push  ###
+```
+Username for 'https://github.com': your_username
+Password for 'https://donbigosso@github.com': your_password
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/donbigosso/my_instructions/'
+```
+
+
 ### Cloning an existing repository ###
 ``` git clone https://github.com/username/repo_name ```
 
