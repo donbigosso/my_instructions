@@ -110,9 +110,13 @@ When this script returns error, make sure folder is either set to 777 or group o
 chown -R bigos:www-data uploads/  #bigos is owner www-data is group
 
 chmod 775 uploads/ #group can write and execute
-
-
 ```
+### Permissions issues with NGINX ###
+
+```docker exec -it php-fpm sh``` this runs command line where php-fpm is the container name. Then check UID for www-data for both host and container
+``` id www-data ``` and if ig is different, use the correct numerical id on host.
+
+
 Using DB CLI
 ```
 docker exec -it mysql-db mysql -u myuser -p mydatabase #change to your user and your db name; mysql-db is a container name
@@ -139,6 +143,12 @@ php:
     environment:
       APP_SECRET: ${APP_SECRET}
 ```
+Example of using these variables in php script:
+```
+echo "Secret: " . getenv('APP_SECRET') . "<br>";
+```
+
+
 ## MySQL ##
 ### Dumping database ###
 Database can be duped easily to ``` dump.sql ``` file as long as root password is added to environmental variables:
